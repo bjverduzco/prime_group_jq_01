@@ -10,6 +10,11 @@ var grapesPrice = 500;
 var intervalId;
 var clearIntId;
 
+function priceToString(price) {
+	var tempPrice = price/100;
+	return tempPrice.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+}
+
 function startingPrices(){
 		applesPrice = randomNumber(50, 999);
 		orangesPrice = randomNumber(50, 999);
@@ -21,13 +26,39 @@ function getPrice(){
 	var min = 0;
 	var max = 100;
 	applesPrice += randomNumber(min, max);
-	console.log("apples: " + (applesPrice/100));
 	orangesPrice += randomNumber(min, max);
-	console.log("oranges: " + (orangesPrice/100));
 	bananasPrice += randomNumber(min, max);
 	grapesPrice += randomNumber(min, max);
-	console.log("bananas: " + (bananasPrice/100));
-	console.log("grapes: " + (grapesPrice/100));
+
+	if (applesPrice < 50) {
+		applesPrice += 50;
+	}
+	if (applesPrice > 999) {
+		applesPrice -= 50;
+	}
+	if (orangesPrice < 50) {
+		orangesPrice += 50;
+	}
+	if (orangesPrice > 999) {
+		orangesPrice -= 50;
+	}
+	if (bananasPrice < 50) {
+		bananasPrice += 50;
+	}
+	if (bananasPrice > 999) {
+		bananasPrice -= 50;
+	}
+	if (grapesPrice < 50) {
+		grapesPrice += 50;
+	}
+	if (grapesPrice > 999) {
+		grapesPrice -= 50;
+	}
+
+	$('.apple-price').html(priceToString(applesPrice));
+	$('.orange-price').html(priceToString(orangesPrice));
+	$('.banana-price').html(priceToString(bananasPrice));
+	$('.grape-price').html(priceToString(grapesPrice));
 }
 
 
@@ -42,40 +73,86 @@ function clear(){
 }
 
 startingPrices();
-intervalId = setInterval(getPrice, 15000);
+intervalId = setInterval(getPrice, 1500);
 clearIntId = setInterval(clear, 60000);
 
-
+//jQuery functions
 $(function() {
 	var numApple = 0;
 	var numOrange = 0;
 	var numBanana = 0;
 	var numGrape = 0;
-	var bankAmount = 100;
+	var bankAmount = 10000;
+	getPrice();
 
+
+
+	function getAverage(array) {
+		var tempSum = 0;
+		for (var i = 0; i < array.length; i++) {
+			tempSum += array[i];
+		}
+		return priceToString(tempSum/array.length);
+	}
+
+	var tempAvg = 0;
 	$('.list-of-fruit').on('click','.fruit', function() {
 		var tempFruit = $(this).children().attr('class');
+
+
 
 		switch(tempFruit) {
 			case 'apple':
 				numApple++;
+				if (bankAmount < applesPrice) {
+					alert('INSUFFIENT FUNDS, BUY MORE PYLONS!');
+					break;
+				}
+				bankAmount -= applesPrice;
 				$('.number-apples').html(numApple);
+
+				apples.push(applesPrice);
+				$('.apple-average').html(getAverage(apples));
+
 				break;
 		  case 'orange':
 				numOrange++;
+				if (bankAmount < orangesPrice) {
+					alert('INSUFFIENT FUNDS, BUY MORE PYLONS!');
+					break;
+				}
+				bankAmount -= orangesPrice;
 				$('.number-oranges').html(numOrange);
+				oranges.push(orangesPrice);
+				$('.orange-average').html(getAverage(oranges));
 				break;
 			case 'banana':
 				numBanana++;
+				if (bankAmount < bananasPrice) {
+					alert('INSUFFIENT FUNDS, BUY MORE PYLONS!');
+					break;
+				}
+				bankAmount -= bananasPrice;
 				$('.number-bananas').html(numBanana);
+				bananas.push(bananasPrice);
+				$('.banana-average').html(getAverage(bananas));
 				break;
 			case 'grape':
 				numGrape++;
+				if (bankAmount < grapesPrice) {
+					alert('INSUFFIENT FUNDS, BUY MORE PYLONS!');
+					break;
+				}
+				bankAmount -= grapesPrice;
 				$('.number-grapes').html(numGrape);
+				grapes.push(grapesPrice);
+				$('.grape-average').html(getAverage(grapes));
 				break;
 		}
-		// function to remove market cost of whatever fruit from bank amount
-		$('.cash-money').html(bankAmount);
+
+
+
+		$('.cash-money').html(priceToString(bankAmount));
 
 	});
 

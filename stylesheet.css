@@ -11,8 +11,15 @@ h1 {
 .cash-money {
   margin: 0 0 0 5px;
   border-radius: 5px;
-  background-color: rgba(0,255,0,.3);
-  padding: 2px 5px;
+  /*background-color: rgba(0,255,0,.3);*/
+  background-image: url('http://previews.123rf.com/images/my123rf88/my123rf881401/my123rf88140100051/25279093-Blank-one-dollar-bill-Stock-Photo.jpg');
+  /*background-size: */
+  background-size: cover;
+  background-position: -1px;
+  height: 15px;
+  width: 20px;
+  padding: 10px 20px;
+  color: olivedrab;
 }
 
 .list-of-fruit .fruit {
@@ -51,4 +58,8 @@ h1 {
 .total-quant, .bank {
   clear: both;
   float: left;
+}
+
+.bank {
+  margin: 20px 0;
 }
