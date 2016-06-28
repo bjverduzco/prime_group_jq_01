@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+.container {
+  padding: 10px;
+  width: 860px;
+  margin: 0 auto;
+}
 h1 {
   display: inline-block;
 }
@@ -22,10 +27,9 @@ h1 {
   color: olivedrab;
 }
 
-.list-of-fruit .fruit {
+.list-of-fruit .fruit, .sell {
   width: 200px;
-  height: 200px;
-  border: 1px solid black;
+  border: 1px solid rgba(0,0,0,.5);
   margin: 5px;
   text-align: center;
   float: left;
@@ -33,7 +37,17 @@ h1 {
   box-shadow: 1px 1px 0px rgba(0,0,0,.2);
 }
 
-.list-of-fruit .fruit:active {
+.list-of-fruit .fruit {
+  height: 200px;
+}
+
+.sell {
+  padding: 5px;
+  background-color: rgba(0,0,0,.2);
+}
+
+
+.list-of-fruit .fruit:active, .sell:active {
   position: relative;
   top: 2px;
   left: 2px;
