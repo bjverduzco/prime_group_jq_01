@@ -2,7 +2,7 @@ var apples = [];
 var oranges = [];
 var bananas = [];
 var grapes = [];
-var money = 100;
+var money = 10000;
 var applesPrice = 500;
 var orangesPrice = 500;
 var bananasPrice = 500;
@@ -36,12 +36,10 @@ function randomNumber(min, max) {
 	return (number - 50);
 }
 
-// function test(){
-// 		console.log(applesPrice);
-// }
+
 function clear(){
 		clearInterval(intervalId);
 }
 startingPrices();
-intervalId = setInterval(getPrice, 1000);
-clearIntId = setInterval(clear, 5000);
+intervalId = setInterval(getPrice, 15000);
+clearIntId = setInterval(clear, 60000);
