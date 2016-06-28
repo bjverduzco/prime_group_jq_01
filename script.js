@@ -30,7 +30,7 @@ $(function() {
 				$('.number-grapes').html(numGrape);
 				break;
 		}
-
+		// function to remove market cost of whatever fruit from bank amount
 		$('.cash-money').html(bankAmount);
 
 
