@@ -1,0 +1,54 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  display: inline-block;
+}
+
+.cash-money {
+  margin: 0 0 0 5px;
+  border-radius: 5px;
+  background-color: rgba(0,255,0,.3);
+  padding: 2px 5px;
+}
+
+.list-of-fruit .fruit {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  margin: 5px;
+  text-align: center;
+  float: left;
+  border-radius: 5px;
+  box-shadow: 1px 1px 0px rgba(0,0,0,.2);
+}
+
+.list-of-fruit .fruit:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: all 10s;
+}
+
+.list-of-fruit .fruit:nth-child(3):active {
+  top: 20px;
+  transform: scale(2);
+  transition: all .1s;
+}
+
+.list-of-fruit img {
+  width: 50%;
+  /*margin-top: 10px;*/
+}
+
+.fruit aside:first-child {
+  height: 175px;
+}
+
+.total-quant, .bank {
+  clear: both;
+  float: left;
+}
