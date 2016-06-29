@@ -119,3 +119,6 @@ h1 {
 .list-of-fruit .fruit.red {
   border: 5px solid red;
 }
+ .sell-fruit .red {
+   background-color: red;
+ }
