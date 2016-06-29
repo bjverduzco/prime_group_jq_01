@@ -2,6 +2,10 @@ var apples = [];
 var oranges = [];
 var bananas = [];
 var grapes = [];
+var numApple = 0;
+var numOrange = 0;
+var numBanana = 0;
+var numGrape = 0;
 var money = 10000;
 var applesPrice = 500;
 var orangesPrice = 500;
@@ -10,7 +14,10 @@ var grapesPrice = 500;
 var intervalId;
 var timerIntervalId;
 var clearIntId;
-var timeLeft = 300000;
+var timeLeft = 3000;
+var timeMin = 5;
+var timeSec = 0;
+var bankAmount = 10000;
 
 function priceToString(price) {
 	var tempPrice = price/100;
@@ -18,13 +25,30 @@ function priceToString(price) {
 }
 
 function timer(){
-	timeLeft -= 1000;
-	$('.time-left').html(Math.floor(timeLeft/60000) + ":" + ((timeLeft % 60000) / 1000));
+	var timeTempSec = "0";
+	if(timeSec <= 0 && timeMin <= 0){
+		return $('.time-left').html("0:00");
+	}
+	// timeLeft -= 1000;
+	if(timeSec === 0){
+		timeSec = 60;
+		timeMin -= 1;
+	}
+	timeSec -= 1;
+	if(timeSec < 10){
+		timeTempSec += timeSec;
+	}
+	else{
+		timeTempSec = timeSec;
+	}
+	$('.time-left').html(timeMin + ":" + (timeTempSec));
+
+	// $('.time-left').html(Math.floor(timeLeft/60000) + ":" + ((timeLeft % 60000) / 1000));
 	// console.log("Time remaining: " + Math.floor(timeLeft/60000) + " min " + ((timeLeft % 60000) / 1000) + "sec");
 }
 
 function startTimer(){
-	$('.time-left').html(Math.floor(timeLeft/60000) + "min " + ((timeLeft % 60000) / 1000) + "sec");
+	$('.time-left').html(Math.floor(timeLeft/60000) + ":" + ((timeLeft % 60000) / 1000));
 	// console.log("Time remaining: " + Math.floor(timeLeft/60000) + " min " + ((timeLeft % 60000) / 1000) + "sec");
 }
 
@@ -82,22 +106,33 @@ function randomNumber(min, max) {
 
 
 function clear(){
+	bankAmount += (applesPrice * numApple);
+	bankAmount += (orangesPrice * numOrange);
+	bankAmount += (bananasPrice * numBanana);
+	bankAmount += (grapesPrice * numGrape);
+	numApple = 0;
+	numOrange = 0;
+	numBanana = 0;
+	numGrape = 0;
+	$('.cash-money').html(priceToString(bankAmount));
+	$('.number-apples').html(numApple);
+	$('.number-oranges').html(numOrange);
+	$('.number-bananas').html(numBanana);
+	$('.number-grapes').html(numGrape);
+	alert("Congragulations!!! Or maybe not, you have a total of " + priceToString(bankAmount));
 		clearInterval(intervalId);
+		clearInterval(timerIntervalId);
+
 }
 
 startingPrices();
 startTimer();
 timerIntervalId = setInterval(timer, 1000);
-intervalId = setInterval(getPrice, 1500);
-clearIntId = setInterval(clear, 600000);
+intervalId = setInterval(getPrice, 5000);
+clearIntId = setInterval(clear, 300000);
 
 //jQuery functions
 $(function() {
-	var numApple = 0;
-	var numOrange = 0;
-	var numBanana = 0;
-	var numGrape = 0;
-	var bankAmount = 10000;
 	getPrice();
 
 
@@ -113,9 +148,11 @@ $(function() {
 	$('.list-of-fruit').on('click','.fruit', function() {
 		var tempFruit = $(this).children().attr('class');
 
-
-
-		switch(tempFruit) {
+		if(timeSec === 0 && timeMin === 0){
+			alert('You done run out of time. Take your cashmoney home.');
+			return;
+		}
+		else {switch(tempFruit) {
 			case 'apple':
 				numApple++;
 				if (bankAmount < applesPrice) {
@@ -163,7 +200,7 @@ $(function() {
 				$('.grape-average').html(getAverage(grapes));
 				break;
 		}
-
+	}
 
 
 		$('.cash-money').html(priceToString(bankAmount));
@@ -171,6 +208,10 @@ $(function() {
 	});
 
 	$('.sell-fruit').on('click','div', function() {
+		if(timeSec === 0 && timeMin === 0){
+			alert('You done run out of time. You can\'t sell anymore fruit. Take your cashmoney home.');
+			return;
+		}
 		var tempSellFruit = $(this).attr('class');
 
 		switch(tempSellFruit) {
