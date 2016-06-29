@@ -232,6 +232,24 @@ $(function() {
 		}
 		var tempSellFruit = $(this).attr('class');
 
+
+		function removeColorApple() {
+			$('.sell-apple').removeClass('red');
+		}
+		function removeColorOrange() {
+			$('.sell-orange').removeClass('red');
+		}
+		function removeColorBanana() {
+			$('.sell-banana').removeClass('red');
+		}
+		function removeColorGrape() {
+			$('.sell-grape').removeClass('red');
+		}
+
+
+
+
+
 		switch(tempSellFruit) {
 			case 'sell-apple':
 				if (numApple > 0) {
@@ -241,7 +259,9 @@ $(function() {
 					break;
 				}
 				else {
-					alert('NOT ENOUGH FRUIT!');
+					$(this).addClass('red');
+					setTimeout(removeColorApple, 10);
+					// alert('NOT ENOUGH FRUIT!');
 					break;
 				}
 			case 'sell-orange':
@@ -252,7 +272,8 @@ $(function() {
 					break;
 				}
 				else {
-					alert('NOT ENOUGH FRUIT!');
+					$(this).addClass('red');
+					setTimeout(removeColorOrange, 10);
 					break;
 				}
 			case 'sell-banana':
@@ -263,7 +284,8 @@ $(function() {
 					break;
 				}
 				else {
-					alert('NOT ENOUGH FRUIT!');
+					$(this).addClass('red');
+					setTimeout(removeColorBanana, 10);
 					break;
 				}
 			case 'sell-grape':
@@ -274,7 +296,8 @@ $(function() {
 					break;
 				}
 				else {
-					alert('NOT ENOUGH FRUIT!');
+					$(this).addClass('red');
+					setTimeout(removeColorGrape, 10);
 					break;
 				}
 		}
