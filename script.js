@@ -19,7 +19,7 @@ function priceToString(price) {
 
 function timer(){
 	timeLeft -= 1000;
-	$('.time-left').html(Math.floor(timeLeft/60000) + "min " + ((timeLeft % 60000) / 1000) + "sec");
+	$('.time-left').html(Math.floor(timeLeft/60000) + ":" + ((timeLeft % 60000) / 1000));
 	// console.log("Time remaining: " + Math.floor(timeLeft/60000) + " min " + ((timeLeft % 60000) / 1000) + "sec");
 }
 
@@ -172,6 +172,7 @@ $(function() {
 
 	$('.sell-fruit').on('click','div', function() {
 		var tempSellFruit = $(this).attr('class');
+
 		switch(tempSellFruit) {
 			case 'sell-apple':
 				if (numApple > 0) {

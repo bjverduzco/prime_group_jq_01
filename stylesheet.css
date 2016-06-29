@@ -100,17 +100,17 @@ h1 {
 }
 
 .total-quant article {
-  padding: 5px 10px;
+  padding: 5px 15px;
 }
 
 .total-quant span {
   float: right;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
-.bank {
+.bank, .timer {
   text-align: center;
-  margin: 20px 0;
+  margin: 10px 0;
   /*border: 1px solid red;*/
   width: 100%;
 
