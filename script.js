@@ -148,6 +148,19 @@ $(function() {
 	$('.list-of-fruit').on('click','.fruit', function() {
 		var tempFruit = $(this).children().attr('class');
 
+		function removeApple() {
+			$('.apple').parent().removeClass('red');
+		}
+		function removeOrange() {
+			$('.orange').parent().removeClass('red');
+		}
+		function removeBanana() {
+			$('.banana').parent().removeClass('red');
+		}
+		function removeGrape() {
+			$('.grape').parent().removeClass('red');
+		}
+
 		if(timeSec === 0 && timeMin === 0){
 			alert('You done run out of time. Take your cashmoney home.');
 			return;
@@ -156,12 +169,12 @@ $(function() {
 			case 'apple':
 				numApple++;
 				if (bankAmount < applesPrice) {
-					alert('INSUFFIENT FUNDS, BUY MORE PYLONS!');
+					$('.apple').parent().addClass('red');
+					setTimeout(removeApple, 50);
 					break;
 				}
 				bankAmount -= applesPrice;
 				$('.number-apples').html(numApple);
-
 				apples.push(applesPrice);
 				$('.apple-average').html(getAverage(apples));
 
@@ -169,7 +182,8 @@ $(function() {
 		  case 'orange':
 				numOrange++;
 				if (bankAmount < orangesPrice) {
-					alert('INSUFFIENT FUNDS, BUY MORE PYLONS!');
+					$('.orange').parent().addClass('red');
+					setTimeout(removeOrange, 50);
 					break;
 				}
 				bankAmount -= orangesPrice;
@@ -180,7 +194,8 @@ $(function() {
 			case 'banana':
 				numBanana++;
 				if (bankAmount < bananasPrice) {
-					alert('INSUFFIENT FUNDS, BUY MORE PYLONS!');
+					$('.banana').parent().addClass('red');
+					setTimeout(removeBanana, 50);
 					break;
 				}
 				bankAmount -= bananasPrice;
@@ -191,7 +206,8 @@ $(function() {
 			case 'grape':
 				numGrape++;
 				if (bankAmount < grapesPrice) {
-					alert('INSUFFIENT FUNDS, BUY MORE PYLONS!');
+					$('.grape').parent().addClass('red');
+					setTimeout(removeGrape, 50);
 					break;
 				}
 				bankAmount -= grapesPrice;
