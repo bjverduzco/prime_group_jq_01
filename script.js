@@ -128,8 +128,8 @@ function clear(){
 startingPrices();
 startTimer();
 timerIntervalId = setInterval(timer, 1000);
-intervalId = setInterval(getPrice, 1500);
-clearIntId = setInterval(clear, 3000);
+intervalId = setInterval(getPrice, 5000);
+clearIntId = setInterval(clear, 300000);
 
 //jQuery functions
 $(function() {
