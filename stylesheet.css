@@ -4,15 +4,33 @@
   box-sizing: border-box;
 }
 
+body {
+  background: darkgrey;
+  background-image: url('imgs/cash.jpg');
+}
 .container {
   padding: 10px;
-  width: 860px;
+  width: 1000px;
+  height: 700px;
+  padding: 165px 175px;
   margin: 0 auto;
+  background-image: url('imgs/bg-img.jpg');
+  background-size: 100% 100%;
+  overflow: visible;
 }
 h1 {
   display: inline-block;
 }
 
+.fruit aside:nth-child(2) {
+  font-size: 24px;
+  position: relative;
+  top: -15px;
+}
+
+.fruit img {
+  margin: 15px 0;
+}
 .cash-money {
   margin: 0 0 0 5px;
   border-radius: 5px;
@@ -28,8 +46,8 @@ h1 {
   color: olivedrab;
 }
 
-.list-of-fruit .fruit, .sell-fruit div {
-  width: 200px;
+.list-of-fruit .fruit, .sell-fruit div, .total-quant article {
+  width: 150px;
   border: 1px solid rgba(0,0,0,.5);
   margin: 5px;
   text-align: center;
@@ -38,8 +56,10 @@ h1 {
   box-shadow: 1px 1px 0px rgba(0,0,0,.2);
 }
 
+
 .list-of-fruit .fruit {
   height: 200px;
+  background-color: white;
 }
 
 .sell-fruit div {
@@ -76,16 +96,22 @@ h1 {
 }
 
 .fruit-display, .fruit-average-display {
-  display: inline-block;
-  width: 210px;
+  text-align: left
 }
 
-.fruit-display span {
+.total-quant article {
+  padding: 5px 10px;
+}
+
+.total-quant span {
   float: right;
-  margin: 0 50px 0 0;
+  margin-right: 10px;
 }
-
 
 .bank {
+  text-align: center;
   margin: 20px 0;
+  /*border: 1px solid red;*/
+  width: 100%;
+
 }
