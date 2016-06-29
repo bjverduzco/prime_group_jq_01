@@ -15,8 +15,8 @@ var intervalId;
 var timerIntervalId;
 var clearIntId;
 var timeLeft = 3000;
-var timeMin = 0;
-var timeSec = 3;
+var timeMin = 5;
+var timeSec = 0;
 var bankAmount = 10000;
 
 function priceToString(price) {
