@@ -16,18 +16,20 @@ h1 {
 .cash-money {
   margin: 0 0 0 5px;
   border-radius: 5px;
+  display: inline-block;
+  text-align: center;
   /*background-color: rgba(0,255,0,.3);*/
   background-image: url('http://previews.123rf.com/images/my123rf88/my123rf881401/my123rf88140100051/25279093-Blank-one-dollar-bill-Stock-Photo.jpg');
   /*background-size: */
-  background-size: cover;
-  background-position: -1px;
-  height: 15px;
-  width: 20px;
-  padding: 10px 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: auto;
+  width: 150px;
+  padding: 20px 0;
   color: olivedrab;
 }
 
-.list-of-fruit .fruit, .sell {
+.list-of-fruit .fruit, .sell-fruit div {
   width: 200px;
   border: 1px solid rgba(0,0,0,.5);
   margin: 5px;
@@ -41,13 +43,13 @@ h1 {
   height: 200px;
 }
 
-.sell {
+.sell-fruit div {
   padding: 5px;
   background-color: rgba(0,0,0,.2);
 }
 
 
-.list-of-fruit .fruit:active, .sell:active {
+.list-of-fruit .fruit:active, .sell-fruit div:active {
   position: relative;
   top: 2px;
   left: 2px;
@@ -73,6 +75,17 @@ h1 {
   clear: both;
   float: left;
 }
+
+.fruit-display, .fruit-average-display {
+  display: inline-block;
+  width: 210px;
+}
+
+.fruit-display span {
+  float: right;
+  margin: 0 50px 0 0;
+}
+
 
 .bank {
   margin: 20px 0;

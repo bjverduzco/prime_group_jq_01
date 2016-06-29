@@ -74,7 +74,7 @@ function clear(){
 
 startingPrices();
 intervalId = setInterval(getPrice, 1500);
-clearIntId = setInterval(clear, 60000);
+clearIntId = setInterval(clear, 600000);
 
 //jQuery functions
 $(function() {
@@ -95,7 +95,6 @@ $(function() {
 		return priceToString(tempSum/array.length);
 	}
 
-	var tempAvg = 0;
 	$('.list-of-fruit').on('click','.fruit', function() {
 		var tempFruit = $(this).children().attr('class');
 
@@ -155,5 +154,58 @@ $(function() {
 		$('.cash-money').html(priceToString(bankAmount));
 
 	});
+
+	$('.sell-fruit').on('click','div', function() {
+		var tempSellFruit = $(this).attr('class');
+		switch(tempSellFruit) {
+			case 'sell-apple':
+				if (numApple > 0) {
+					numApple--;
+					bankAmount += applesPrice;
+					$('.number-apples').html(numApple);
+					break;
+				}
+				else {
+					alert('NOT ENOUGH FRUIT!');
+					break;
+				}
+			case 'sell-orange':
+				if (numOrange > 0) {
+					numOrange--;
+					bankAmount += orangesPrice;
+					$('.number-oranges').html(numOrange);
+					break;
+				}
+				else {
+					alert('NOT ENOUGH FRUIT!');
+					break;
+				}
+			case 'sell-banana':
+				if (numBanana > 0) {
+					numBanana--;
+					bankAmount += bananasPrice;
+					$('.number-bananas').html(numBanana);
+					break;
+				}
+				else {
+					alert('NOT ENOUGH FRUIT!');
+					break;
+				}
+			case 'sell-grape':
+				if (numGrape > 0) {
+					numGrape--;
+					bankAmount += grapesPrice;
+					$('.number-grapes').html(numGrape);
+					break;
+				}
+				else {
+					alert('NOT ENOUGH FRUIT!');
+					break;
+				}
+		}
+
+		$('.cash-money').html(priceToString(bankAmount));
+	});
+
 
 });
