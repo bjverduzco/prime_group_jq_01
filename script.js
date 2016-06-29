@@ -14,7 +14,7 @@ var grapesPrice = 500;
 var intervalId;
 var timerIntervalId;
 var clearIntId;
-var timeLeft = 3000;
+//var timeLeft = 3000;
 var timeMin = 5;
 var timeSec = 0;
 var bankAmount = 10000;
@@ -30,7 +30,7 @@ function timer(){
 		return $('.time-left').html("0:00");
 	}
 	// timeLeft -= 1000;
-	if(timeSec === 0){
+	if(timeSec === 0 && timeMin > 0){
 		timeSec = 60;
 		timeMin -= 1;
 	}
@@ -48,7 +48,8 @@ function timer(){
 }
 
 function startTimer(){
-	$('.time-left').html(Math.floor(timeLeft/60000) + ":" + ((timeLeft % 60000) / 1000));
+	$('.time-left').html(timeMin + ":" + timeSec);
+	// $('.time-left').html(Math.floor(timeLeft/60000) + ":" + ((timeLeft % 60000) / 1000));
 	// console.log("Time remaining: " + Math.floor(timeLeft/60000) + " min " + ((timeLeft % 60000) / 1000) + "sec");
 }
 
@@ -114,21 +115,22 @@ function clear(){
 	numOrange = 0;
 	numBanana = 0;
 	numGrape = 0;
+	$('.time-left').html("0:00");
 	$('.cash-money').html(priceToString(bankAmount));
 	$('.number-apples').html(numApple);
 	$('.number-oranges').html(numOrange);
 	$('.number-bananas').html(numBanana);
 	$('.number-grapes').html(numGrape);
 	alert("Congragulations!!! Or maybe not, you have a total of " + priceToString(bankAmount));
-		clearInterval(intervalId);
-		clearInterval(timerIntervalId);
+	clearInterval(intervalId);
+	clearInterval(timerIntervalId);
 
 }
 
 startingPrices();
 startTimer();
 timerIntervalId = setInterval(timer, 1000);
-intervalId = setInterval(getPrice, 5000);
+intervalId = setInterval(getPrice, 15000);
 clearIntId = setInterval(clear, 300000);
 
 //jQuery functions
