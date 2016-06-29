@@ -10,7 +10,9 @@ var grapesPrice = 500;
 var intervalId;
 var timerIntervalId;
 var clearIntId;
-var timeLeft = 300000;
+var timeLeft = 3000;
+var timeMin = 5;
+var timeSec = 0;
 
 function priceToString(price) {
 	var tempPrice = price/100;
@@ -18,13 +20,30 @@ function priceToString(price) {
 }
 
 function timer(){
-	timeLeft -= 1000;
-	$('.time-left').html(Math.floor(timeLeft/60000) + "min " + ((timeLeft % 60000) / 1000) + "sec");
+	var timeTempSec = "0";
+	if(timeSec <= 0 && timeMin <= 0){
+		return $('.time-left').html("0:00");
+	}
+	// timeLeft -= 1000;
+	if(timeSec === 0){
+		timeSec = 60;
+		timeMin -= 1;
+	}
+	timeSec -= 1;
+	if(timeSec < 10){
+		timeTempSec += timeSec;
+	}
+	else{
+		timeTempSec = timeSec;
+	}
+	$('.time-left').html(timeMin + ":" + (timeTempSec));
+
+	// $('.time-left').html(Math.floor(timeLeft/60000) + ":" + ((timeLeft % 60000) / 1000));
 	// console.log("Time remaining: " + Math.floor(timeLeft/60000) + " min " + ((timeLeft % 60000) / 1000) + "sec");
 }
 
 function startTimer(){
-	$('.time-left').html(Math.floor(timeLeft/60000) + "min " + ((timeLeft % 60000) / 1000) + "sec");
+	$('.time-left').html(Math.floor(timeLeft/60000) + ":" + ((timeLeft % 60000) / 1000));
 	// console.log("Time remaining: " + Math.floor(timeLeft/60000) + " min " + ((timeLeft % 60000) / 1000) + "sec");
 }
 
@@ -82,7 +101,14 @@ function randomNumber(min, max) {
 
 
 function clear(){
+	bankAmount += (applesPrice * numApple);
+	bankAmount += (orangesPrice * numOrange);
+	bankAmount += (bananasPrice * numBanana);
+	bankAmount += (grapesPrice * numGrape);
+	console.log("Congragulations!!! You have earned " + priceToString(bankAmount));
 		clearInterval(intervalId);
+		clearInterval(timerIntervalId);
+
 }
 
 startingPrices();
