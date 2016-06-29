@@ -8,11 +8,24 @@ var orangesPrice = 500;
 var bananasPrice = 500;
 var grapesPrice = 500;
 var intervalId;
+var timerIntervalId;
 var clearIntId;
+var timeLeft = 300000;
 
 function priceToString(price) {
 	var tempPrice = price/100;
 	return tempPrice.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+}
+
+function timer(){
+	timeLeft -= 1000;
+	$('.time-left').html(Math.floor(timeLeft/60000) + "min " + ((timeLeft % 60000) / 1000) + "sec");
+	// console.log("Time remaining: " + Math.floor(timeLeft/60000) + " min " + ((timeLeft % 60000) / 1000) + "sec");
+}
+
+function startTimer(){
+	$('.time-left').html(Math.floor(timeLeft/60000) + "min " + ((timeLeft % 60000) / 1000) + "sec");
+	// console.log("Time remaining: " + Math.floor(timeLeft/60000) + " min " + ((timeLeft % 60000) / 1000) + "sec");
 }
 
 function startingPrices(){
@@ -73,6 +86,8 @@ function clear(){
 }
 
 startingPrices();
+startTimer();
+timerIntervalId = setInterval(timer, 1000);
 intervalId = setInterval(getPrice, 1500);
 clearIntId = setInterval(clear, 600000);
 
